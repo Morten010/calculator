@@ -6,11 +6,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 //Homepage
-app.get('/', function(req, res){
+app.get('calculator/', function(req, res){
     res.sendFile(__dirname + "/index.html")
 });
 
-app.post("/", function(req, res){
+app.post("calculator/", function(req, res){
 
     // console.log(req.body);
     var num1 = Number(req.body.num1);
@@ -21,15 +21,17 @@ app.post("/", function(req, res){
 })
 
 //BMI page
-app.get('/bmicalculator', function(req, res){
+app.get('calculator/bmicalculator', function(req, res){
     //get html boilerplate of the bmi page
     res.sendFile(__dirname + "/bmicalculator.html")
 });
-app.post('/bmicalculator', function(req, res){
-    const weight = Number(req.body.weight)
-    const height = Number(req.body.height)
-    const result = weight / height / height * 10000
-    res.send(`Your BMI is ${result.toFixed(1)} <br><br><strong>BMI Categories:</strong><br> Underweight = <18.5 <br> Normal weight = 18.5–24.9<br> Overweight = 25–29.9<br> Obesity = BMI of 30 or greater` )
+app.post('calculator/bmicalculator', function(req, res){
+    const weight = Number(req.body.weight);
+    const height = Number(req.body.height);
+    
+    const result = weight / height / height * 10000;
+
+    res.send(`Your BMI is ${result.toFixed(1)} <br><br><strong>BMI Categories:</strong><br> Underweight = <18.5 <br> Normal weight = 18.5–24.9<br> Overweight = 25–29.9<br> Obesity = BMI of 30 or greater` );
 })
 
 
